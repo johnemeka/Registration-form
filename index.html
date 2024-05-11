@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav__content">
+          <div class="logo"><a href="#">REGISTRATION FORM</a></div>
+        </div>
+      </nav>
+      <div class="form">
+        <form id="registrationForm" onsubmit="return false;">
+            <label for="studentType">Student Type:</label>
+            <select id="studentType" onchange="showFields()">
+                <option value="undergraduate">Undergraduate</option>
+                <option value="postgraduate">Postgraduate</option>
+            </select>
+            <label for="matricNo">Matric No:</label>
+            <input type="text" id="matricNo" required>
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" required>
+            <label for="dateOfBirth">Date of Birth:</label>
+            <input type="text" id="dateOfBirth" required>
+            <label for="department">Department:</label>
+            <input type="text" id="department" required>
+            <div id="additionalFields"></div>
+            <input type="submit" value="Submit" onclick="displayInfo()">
+        </form>
+      </div>
+      
+
+<script>
+    function showFields() {
+        var studentType = document.getElementById("studentType").value;
+        var additionalFields = document.getElementById("additionalFields");
+        additionalFields.innerHTML = "";
+
+        if (studentType === "undergraduate") {
+            additionalFields.innerHTML += `
+                <label for="hotel">Hotel:</label>
+                <input type="text" id="hotel" required>
+            `;
+        } else if (studentType === "postgraduate") {
+            additionalFields.innerHTML += `
+                <label for="programmeType">Programme Type (Ft/PT):</label>
+                <input type="text" id="programmeType" required>
+                <label for="lastInstitution">Last Institution Attended:</label>
+                <input type="text" id="lastInstitution" required>
+            `;
+        }
+    }
+
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var studentType = document.getElementById("studentType").value;
+        var matricNo = document.getElementById("matricNo").value;
+        var fullName = document.getElementById("fullName").value;
+        var dateOfBirth = document.getElementById("dateOfBirth").value;
+        var department = document.getElementById("department").value;
+        var additionalInfo = "";
+
+        if (studentType === "undergraduate") {
+            var hotel = document.getElementById("hotel").value;
+            additionalInfo = "Hotel: " + hotel;
+        } else if (studentType === "postgraduate") {
+            var programmeType = document.getElementById("programmeType").value;
+            var lastInstitution = document.getElementById("lastInstitution").value;
+            additionalInfo = "Programme Type: " + programmeType + ", Last Institution Attended: " + lastInstitution;
+        }
+
+        // Redirect to the display page with form data as parameters
+        window.location.href = "display_info.html?studentType=" + encodeURIComponent(studentType) + 
+                                "&matricNo=" + encodeURIComponent(matricNo) + 
+                                "&fullName=" + encodeURIComponent(fullName) + 
+                                "&dateOfBirth=" + encodeURIComponent(dateOfBirth) + 
+                                "&department=" + encodeURIComponent(department) + 
+                                "&additionalInfo=" + encodeURIComponent(additionalInfo);
+    });
+</script>
+
+</body>
+</html>

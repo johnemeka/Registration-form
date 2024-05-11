@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Information</title>
+    <link rel="stylesheet" href="info.css">
+</head>
+<body>
+    <nav>
+    <div class="nav__content">
+        <div class="logo"><a href="#">REGISTRATION INFORMATION</a></div>
+      </div>
+    </nav>
+
+<div id="registrationInfo"></div>
+
+
+
+
+
+
+<script>
+    // Get URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const studentType = params.get('studentType');
+    const matricNo = params.get('matricNo');
+    const fullName = params.get('fullName');
+    const dateOfBirth = params.get('dateOfBirth');
+    const department = params.get('department');
+    const additionalInfo = params.get('additionalInfo');
+
+    // Display registration information
+    document.getElementById('registrationInfo').innerHTML = `
+        <p><strong>Student Type:</strong> ${studentType}</p>
+        <p><strong>Matric No:</strong> ${matricNo}</p>
+        <p><strong>Full Name:</strong> ${fullName}</p>
+        <p><strong>Date of Birth:</strong> ${dateOfBirth}</p>
+        <p><strong>Department:</strong> ${department}</p>
+        <p><strong>Additional Information:</strong> ${additionalInfo}</p>
+    `;
+</script>
+
+</body>
+</html>
