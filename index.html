@@ -14,19 +14,19 @@
       </nav>
       <div class="form">
         <form id="registrationForm" onsubmit="return false;">
-            <label for="studentType">Student Type:</label>
-            <select id="studentType" onchange="showFields()">
-                <option value="undergraduate">Undergraduate</option>
+            <label for="studentType">Student Type:  make sure you select one</label>
+            <select id="studentType" onchange="showFields()" class="level">
+                <option value="undergraduate" >Undergraduate</option>
                 <option value="postgraduate">Postgraduate</option>
             </select>
             <label for="matricNo">Matric No:</label>
-            <input type="text" id="matricNo" required>
+            <input placeholder="12345" type="text" id="matricNo" required>
             <label for="fullName">Full Name:</label>
-            <input type="text" id="fullName" required>
+            <input placeholder="John Doe"  type="text" id="fullName" required>
             <label for="dateOfBirth">Date of Birth:</label>
-            <input type="text" id="dateOfBirth" required>
+            <input placeholder="01 jan 1990" type="text" id="dateOfBirth" required>
             <label for="department">Department:</label>
-            <input type="text" id="department" required>
+            <input placeholder="Computer Science" type="text" id="department" required>
             <div id="additionalFields"></div>
             <input type="submit" value="Submit" onclick="displayInfo()">
         </form>
