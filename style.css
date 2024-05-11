@@ -104,3 +104,13 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color:var(--primary-color-dark);
 }
+
+/* Add this CSS to your style.css file */
+#dateOfBirthField {
+  display: block; /* Ensure Date of Birth field is initially visible */
+}
+
+/* Hide Date of Birth field when student type is postgraduate */
+#dateOfBirthField.hidden {
+  display: none;
+}

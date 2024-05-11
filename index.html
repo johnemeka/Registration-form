@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
         <div class="nav__content">
           <div class="logo"><a href="#">REGISTRATION FORM</a></div>
         </div>
-      </nav>
-      <div class="form">
+    </nav>
+    <div class="form">
         <form id="registrationForm" onsubmit="return false;">
-            <label for="studentType">Student Type:  make sure you select one</label>
+            <label for="studentType">Student Type: make sure you select one</label>
             <select id="studentType" onchange="showFields()" class="level">
                 <option value="undergraduate" >Undergraduate</option>
                 <option value="postgraduate">Postgraduate</option>
@@ -22,28 +22,33 @@
             <label for="matricNo">Matric No:</label>
             <input placeholder="12345" type="text" id="matricNo" required>
             <label for="fullName">Full Name:</label>
-            <input placeholder="John Doe"  type="text" id="fullName" required>
-            <label for="dateOfBirth">Date of Birth:</label>
-            <input placeholder="01 jan 1990" type="text" id="dateOfBirth" required>
+            <input placeholder="John Doe" type="text" id="fullName" required>
+            <div id="dateOfBirthField">
+                <label for="dateOfBirth">Date of Birth:</label>
+                <input placeholder="01 jan 1990" type="text" id="dateOfBirth" required>
+            </div>
             <label for="department">Department:</label>
             <input placeholder="Computer Science" type="text" id="department" required>
             <div id="additionalFields"></div>
             <input type="submit" value="Submit" onclick="displayInfo()">
         </form>
-      </div>
+    </div>
       
-
 <script>
     function showFields() {
         var studentType = document.getElementById("studentType").value;
         var additionalFields = document.getElementById("additionalFields");
+        var dateOfBirthField = document.getElementById("dateOfBirthField");
+
         additionalFields.innerHTML = "";
 
         if (studentType === "undergraduate") {
             additionalFields.innerHTML += `
-                <label for="hotel">Hotel:</label>
-                <input type="text" id="hotel" required>
+                <label for="hostel">Hostel:</label>
+                <input type="text" id="hostel" required>
             `;
+            // Show Date of Birth field for undergraduate
+            dateOfBirthField.style.display = "block";
         } else if (studentType === "postgraduate") {
             additionalFields.innerHTML += `
                 <label for="programmeType">Programme Type (Ft/PT):</label>
@@ -51,6 +56,8 @@
                 <label for="lastInstitution">Last Institution Attended:</label>
                 <input type="text" id="lastInstitution" required>
             `;
+            // Hide Date of Birth field for postgraduate
+            dateOfBirthField.style.display = "none";
         }
     }
 
@@ -59,13 +66,19 @@
         var studentType = document.getElementById("studentType").value;
         var matricNo = document.getElementById("matricNo").value;
         var fullName = document.getElementById("fullName").value;
-        var dateOfBirth = document.getElementById("dateOfBirth").value;
+        var dateOfBirth = ""; // Initialize dateOfBirth to empty string
+
+        // Only retrieve date of birth if student type is undergraduate
+        if (studentType === "undergraduate") {
+            dateOfBirth = document.getElementById("dateOfBirth").value;
+        }
+
         var department = document.getElementById("department").value;
         var additionalInfo = "";
 
         if (studentType === "undergraduate") {
-            var hotel = document.getElementById("hotel").value;
-            additionalInfo = "Hotel: " + hotel;
+            var hostel = document.getElementById("hostel").value;
+            additionalInfo = "Hostel: " + hostel;
         } else if (studentType === "postgraduate") {
             var programmeType = document.getElementById("programmeType").value;
             var lastInstitution = document.getElementById("lastInstitution").value;
