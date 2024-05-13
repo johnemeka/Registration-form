@@ -106,9 +106,7 @@ input[type="submit"]:hover {
 }
 
 /* Add this CSS to your style.css file */
-#dateOfBirthField {
-  display: block; /* Ensure Date of Birth field is initially visible */
-}
+
 #dateOfBirth {
   padding: 8px;
   border: 1px solid #ccc;
