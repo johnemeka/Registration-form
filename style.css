@@ -109,6 +109,14 @@ input[type="submit"]:hover {
 #dateOfBirthField {
   display: block; /* Ensure Date of Birth field is initially visible */
 }
+#dateOfBirth {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%; /* Make it full width */
+  box-sizing: border-box; /* Include padding and border in width */
+}
 
 /* Hide Date of Birth field when student type is postgraduate */
 #dateOfBirthField.hidden {
